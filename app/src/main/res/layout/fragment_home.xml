@@ -33,9 +33,11 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/start_game"
         style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_spacing_large"
+        android:layout_marginStart="@dimen/size_spacing_xxlarge"
+        android:layout_marginEnd="@dimen/size_spacing_xxlarge"
+        android:layout_marginBottom="@dimen/size_spacing_small"
         android:text="@string/start_game"
         app:layout_constraintBottom_toTopOf="@+id/centerGuideline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,12 +46,12 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/statistics"
         style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_spacing_large"
+        android:layout_marginTop="@dimen/size_spacing_small"
         android:text="@string/game_statistics"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/start_game"
+        app:layout_constraintStart_toStartOf="@+id/start_game"
         app:layout_constraintTop_toBottomOf="@+id/centerGuideline" />
 
 
