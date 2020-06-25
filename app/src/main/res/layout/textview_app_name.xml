@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_name_text"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:text="@string/app_name"
+    style="@style/Headline.XLarge"
+    android:layout_marginTop="@dimen/size_spacing_large"
+    app:layout_constraintEnd_toEndOf="@+id/welcome_text"
+    app:layout_constraintStart_toStartOf="@+id/welcome_text"
+    app:layout_constraintTop_toBottomOf="@+id/welcome_text"
+    tools:showIn="@layout/fragment_splash" />

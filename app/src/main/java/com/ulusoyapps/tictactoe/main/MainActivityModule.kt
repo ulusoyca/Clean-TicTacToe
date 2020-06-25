@@ -17,6 +17,7 @@
 package com.ulusoyapps.tictactoe.main
 
 import com.ulusoyapps.tictactoe.ActivityScope
+import com.ulusoyapps.tictactoe.main.splash.SplashFragmentModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -25,7 +26,8 @@ abstract class MainActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(
         modules = [
-            MainModule::class
+            MainModule::class,
+            SplashFragmentModule::class
         ]
     )
     abstract fun contributeMainActivityInjector(): MainActivity
