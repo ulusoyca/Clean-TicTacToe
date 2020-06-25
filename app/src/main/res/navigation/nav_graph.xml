@@ -6,5 +6,28 @@
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.ulusoyapps.tictactoe.main.splash.SplashFragment"
-        android:label="SplashFragment" />
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ulusoyapps.tictactoe.main.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.ulusoyapps.tictactoe.main.game.GameFragment"
+        android:label="GameFragment" />
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.ulusoyapps.tictactoe.main.statistics.StatisticsFragment"
+        android:label="StatisticsFragment" />
 </navigation>

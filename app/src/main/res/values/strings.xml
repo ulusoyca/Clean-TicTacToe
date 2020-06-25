@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">TicTacToe</string>
     <string name="splash_welcome_message">Welcome to GoalPlan</string>
+    <string name="start_game">Start game</string>
+    <string name="game_statistics">Game Statistics</string>
+    <string name="reset_statistics">Reset Statistics</string>
 </resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/gradient_background">
 
     <androidx.constraintlayout.widget.Guideline
@@ -11,27 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
-
-    <TextView
-        android:id="@+id/welcome_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/splash_welcome_message"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        style="@style/Headline.Medium"
-        app:layout_constraintTop_toTopOf="@+id/topGuideline" />
+        app:layout_constraintGuide_percent="0.10" />
 
     <TextView
         android:id="@+id/app_name_text"
+        style="@style/Headline.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="@string/app_name"
-        style="@style/Headline.XLarge"
-        android:layout_marginTop="@dimen/size_spacing_large"
-        app:layout_constraintEnd_toEndOf="@+id/welcome_text"
-        app:layout_constraintStart_toStartOf="@+id/welcome_text"
-        app:layout_constraintTop_toBottomOf="@+id/welcome_text" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/topGuideline"
+        android:text="@string/reset_statistics" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
