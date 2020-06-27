@@ -1,3 +1,4 @@
+include ':localmovehandler'
 include ':datasource'
 include ':unittesting'
 include ':domain'
