@@ -1,3 +1,4 @@
+include ':datasource'
 include ':unittesting'
 include ':domain'
 include ':app'

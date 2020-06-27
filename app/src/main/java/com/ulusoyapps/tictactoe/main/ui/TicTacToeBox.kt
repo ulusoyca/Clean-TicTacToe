@@ -6,7 +6,7 @@ import android.view.Gravity
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.ulusoyapps.tictactoe.R
-import com.ulusoyapps.tictactoe.main.entity.Coordinate
+import com.ulusoyapps.tictactoe.domain.entitiy.Coordinate
 
 class TicTacToeBox
 @JvmOverloads constructor(

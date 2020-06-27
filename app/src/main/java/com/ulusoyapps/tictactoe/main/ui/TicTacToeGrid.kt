@@ -9,7 +9,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.setMargins
 import com.ulusoyapps.tictactoe.R
 import com.ulusoyapps.tictactoe.databinding.ViewTicTacToeGridBinding
-import com.ulusoyapps.tictactoe.main.entity.Coordinate
+import com.ulusoyapps.tictactoe.domain.entitiy.Coordinate
 import kotlin.math.roundToInt
 
 private const val GRID_SIZE = 3
