@@ -1,3 +1,4 @@
+include ':cache'
 include ':localmovehandler'
 include ':datasource'
 include ':unittesting'

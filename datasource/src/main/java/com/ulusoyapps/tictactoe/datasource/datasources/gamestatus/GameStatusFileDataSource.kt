@@ -8,7 +8,7 @@ class GameStatusFileDataSource
 @Inject constructor(
     private val gameStatusFileDataSource: GameStatusDataSource
 ) {
-    suspend fun saveGameStatus(gameStatus: GameStatus): Resource<Nothing> {
+    suspend fun saveGameStatus(gameStatus: GameStatus): Resource<Unit> {
         return gameStatusFileDataSource.saveGameStatus(gameStatus)
     }
 
