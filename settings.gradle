@@ -1,2 +1,4 @@
+include ':unittesting'
+include ':domain'
 include ':app'
 rootProject.name = "TicTacToe"
