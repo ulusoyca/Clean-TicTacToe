@@ -5,10 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.ulusoyapps.tictactoe.R
 import com.ulusoyapps.tictactoe.databinding.FragmentHomeBinding
-import com.ulusoyapps.tictactoe.main.extensions.getStyledAppName
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : DaggerFragment() {
 
@@ -25,12 +24,15 @@ class HomeFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.run {
-            appNameText.text = getStyledAppName(requireContext())
-            startGame.setOnClickListener {
+        binding.topButton.run {
+            text = getString(R.string.start_game)
+            setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment())
             }
-            statistics.setOnClickListener {
+        }
+        binding.bottomButton.run {
+            text = getString(R.string.game_statistics)
+            setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStatisticsFragment())
             }
         }

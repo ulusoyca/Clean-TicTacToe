@@ -4,4 +4,8 @@
     <string name="start_game">Start game</string>
     <string name="game_statistics">Game Statistics</string>
     <string name="reset_statistics">Reset Statistics</string>
+    <string name="you">You</string>
+    <string name="computer">Computer</string>
+    <string name="games">Games</string>
+    <string name="you_lost">You Lost!</string>
 </resources>

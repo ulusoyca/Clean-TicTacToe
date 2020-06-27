@@ -9,5 +9,6 @@
     <color name="dark_orange">#c64b13</color>
     <color name="green">#7CBC57</color>
     <color name="gray">#BAC9E1</color>
+    <color name="opaque_gray">#64C4C4C4</color>
     <color name="light_yellow">#FFF4DD</color>
 </resources>
