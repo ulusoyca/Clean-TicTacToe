@@ -28,27 +28,48 @@ class GameStatusSharedPrefs
     @WorkerThread
     override suspend fun saveGameStatus(gameStatus: GameStatus): Resource<Unit> {
         return when (gameStatus) {
-            is InProgress -> updateGameProgress(gameStatus)
+            is InProgress -> updateMoves(gameStatus.moves)
             is PlayerWon -> updateWonStatistics()
             is PlayerLost -> updateLostStatistics()
             is Draw -> updateDrawStatistics()
-            NotStarted -> Success(Unit)
+            is NotStarted -> setMovesToGameBeginningState()
         }
+    }
+
+    private fun setMovesToGameBeginningState(): Resource<Unit> {
+        updateMoves(
+            Moves(
+                playerMoves = emptyList(),
+                computerMoves = emptyList()
+            )
+        )
+        return Success(Unit)
     }
 
     @WorkerThread
     override suspend fun getGameStatus(): Resource<GameStatus> {
         val jsonString = getFromSharedPrefs()
-        val cachedMoves = jsonString?.let { adapter.fromJson(it) }
-        return if (cachedMoves == null) {
-            Success(NotStarted)
+        return if (jsonString == null) {
+            Failure(Reason("Could not read shared preference file"))
         } else {
-            Success(InProgress(movesMapper.mapToDomainEntity(cachedMoves)))
+            return if (jsonString.isEmpty()) {
+                // This is the first time reading shared preferences. No game is yet played.
+                setMovesToGameBeginningState()
+                Success(NotStarted)
+            } else {
+                // There is an ongoing game
+                val cachedMoves = jsonString.let { adapter.fromJson(it) }
+                if (cachedMoves == null) {
+                    Failure(Reason("Could not read current moves"))
+                } else {
+                    Success(InProgress(movesMapper.mapToDomainEntity(cachedMoves)))
+                }
+            }
         }
     }
 
-    private fun updateGameProgress(gameStatus: InProgress): Resource<Unit> {
-        val cachedMoves = movesMapper.mapFromDomainEntity(gameStatus.moves)
+    private fun updateMoves(moves: Moves): Resource<Unit> {
+        val cachedMoves = movesMapper.mapFromDomainEntity(moves)
         saveToSharedPrefs(adapter.toJson(cachedMoves))
         return Success(Unit)
     }

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import androidx.core.content.edit
 import com.squareup.moshi.Moshi
+import com.ulusoyapps.tictactoe.cache.entity.CachedMoves
 import com.ulusoyapps.tictactoe.cache.entity.CachedStatistics
 import com.ulusoyapps.tictactoe.cache.entity.CachedStatisticsJsonAdapter
 import com.ulusoyapps.tictactoe.cache.mapper.StatisticsMapper
@@ -26,19 +27,32 @@ class StatisticsSharedPrefs
 
     @WorkerThread
     override fun getStatistics(): Resource<Statistics> {
-        val jsonString = context.getSharedPreferences(
+        val jsonString = getFromSharedPrefs()
+        return if (jsonString == null) {
+            Failure(Reason("Could not read shared preference file"))
+        } else {
+            return if (jsonString.isEmpty()) {
+                // This is the first time reading shared preferences. No game is yet played.
+                Success(Statistics(win = 0, lose = 0, draw = 0))
+            } else {
+                val cachedStatistics = jsonString.let { adapter.fromJson(it) }
+                if (cachedStatistics == null) {
+                    Failure(Reason("Could not read statistics"))
+                } else {
+                    Success(statisticsMapper.mapToDomainEntity(cachedStatistics))
+                }
+            }
+        }
+    }
+
+    private fun getFromSharedPrefs(): String? {
+        return context.getSharedPreferences(
             STATISTICS_SHARED_PREF,
             Context.MODE_PRIVATE
         ).getString(
             STATISTICS_KEY,
             ""
         )
-        val cachedStatistics = jsonString?.let { adapter.fromJson(it) }
-        return if (cachedStatistics == null) {
-            Failure(Reason("Statistics not available"))
-        } else {
-            Success(statisticsMapper.mapToDomainEntity(cachedStatistics))
-        }
     }
 
     @WorkerThread

@@ -18,13 +18,8 @@ package com.ulusoyapps.tictactoe.di
 
 import com.ulusoyapps.tictactoe.cache.GameStatusSharedPrefs
 import com.ulusoyapps.tictactoe.cache.StatisticsSharedPrefs
-import com.ulusoyapps.tictactoe.datasource.datasources.gamestatus.GameStatusDataRepository
 import com.ulusoyapps.tictactoe.datasource.datasources.gamestatus.GameStatusDataSource
-import com.ulusoyapps.tictactoe.datasource.datasources.playermove.PlayerMoveDataRepository
 import com.ulusoyapps.tictactoe.datasource.datasources.statistics.StatisticsDataSource
-import com.ulusoyapps.tictactoe.domain.repository.GameStatusRepository
-import com.ulusoyapps.tictactoe.domain.repository.PlayerMoveRepository
-import com.ulusoyapps.tictactoe.domain.repository.StatisticsRepository
 import dagger.Binds
 import dagger.Module
 

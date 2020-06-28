@@ -9,7 +9,7 @@
         android:label="SplashFragment" >
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"/>
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -17,15 +17,32 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
+            app:destination="@id/gameFragment"
+            app:enterAnim="@anim/transition_slide_in_from_right"
+            app:exitAnim="@anim/transition_slide_out_to_left"
+            app:popEnterAnim="@anim/transition_slide_in_from_left"
+            app:popExitAnim="@anim/transition_slide_out_to_right"
+            />
         <action
             android:id="@+id/action_homeFragment_to_statisticsFragment"
-            app:destination="@id/statisticsFragment" />
+            app:destination="@id/statisticsFragment"
+            app:enterAnim="@anim/transition_slide_in_from_right"
+            app:exitAnim="@anim/transition_slide_out_to_left"
+            app:popEnterAnim="@anim/transition_slide_in_from_left"
+            app:popExitAnim="@anim/transition_slide_out_to_right"/>
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.ulusoyapps.tictactoe.main.game.GameFragment"
-        android:label="GameFragment" />
+        android:label="GameFragment">
+        <action
+            android:id="@+id/action_gameFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/transition_slide_in_from_right"
+            app:exitAnim="@anim/transition_slide_out_to_left"
+            app:popEnterAnim="@anim/transition_slide_in_from_left"
+            app:popExitAnim="@anim/transition_slide_out_to_right"/>
+    </fragment>
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.ulusoyapps.tictactoe.main.statistics.StatisticsFragment"

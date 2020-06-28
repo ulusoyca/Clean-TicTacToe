@@ -22,14 +22,14 @@ class LocalPlayerMoveHandler
         // Rows
         listOf(Coordinate(0, 0), Coordinate(0, 1), Coordinate(0, 2)),
         listOf(Coordinate(1, 0), Coordinate(1, 1), Coordinate(1, 2)),
-        listOf(Coordinate(2, 0), Coordinate(2, 1), Coordinate(0, 2)),
+        listOf(Coordinate(2, 0), Coordinate(2, 1), Coordinate(2, 2)),
         // Columns
         listOf(Coordinate(0, 0), Coordinate(1, 0), Coordinate(2, 0)),
         listOf(Coordinate(0, 1), Coordinate(1, 1), Coordinate(2, 1)),
         listOf(Coordinate(0, 2), Coordinate(1, 2), Coordinate(2, 2)),
         // Diagonals
         listOf(Coordinate(0, 0), Coordinate(1, 1), Coordinate(2, 2)),
-        listOf(Coordinate(2, 2), Coordinate(1, 1), Coordinate(0, 0))
+        listOf(Coordinate(0, 2), Coordinate(1, 1), Coordinate(2, 0))
     )
 
     override suspend fun handlePlayerMove(moves: Moves): Resource<GameStatus> {

@@ -18,8 +18,6 @@ class TicTacToeBox
 
     init {
         gravity = Gravity.CENTER
-        onComputerMove()
-        onPlayerMove()
     }
 
     fun onComputerMove() {
@@ -30,5 +28,10 @@ class TicTacToeBox
     fun onPlayerMove() {
         backgroundTintList = ContextCompat.getColorStateList(context, R.color.gray)
         icon = context.getDrawable(R.drawable.ic_circle)
+    }
+
+    fun setToInitialState() {
+        isClickable = true
+        backgroundTintList = ContextCompat.getColorStateList(context, R.color.white)
     }
 }

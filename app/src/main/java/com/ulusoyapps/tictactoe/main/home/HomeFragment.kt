@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.ulusoyapps.tictactoe.R
 import com.ulusoyapps.tictactoe.databinding.FragmentHomeBinding
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.navigation_buttons.*
 
 class HomeFragment : DaggerFragment() {
 
@@ -24,13 +25,13 @@ class HomeFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.topButton.run {
+        top_button.run {
             text = getString(R.string.start_game)
             setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment())
             }
         }
-        binding.bottomButton.run {
+        bottom_button.run {
             text = getString(R.string.game_statistics)
             setOnClickListener {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToStatisticsFragment())
