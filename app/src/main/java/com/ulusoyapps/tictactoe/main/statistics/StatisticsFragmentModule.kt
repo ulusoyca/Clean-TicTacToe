@@ -7,6 +7,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 internal abstract class StatisticsFragmentModule {
     @FragmentScope
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [StatisticsModule::class])
     abstract fun bindFragment(): StatisticsFragment
 }

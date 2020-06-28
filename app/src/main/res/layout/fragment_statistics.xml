@@ -23,16 +23,28 @@
         app:layout_constraintTop_toTopOf="@+id/topGuideline"
         tools:text="@string/app_name" />
 
+    <com.ulusoyapps.tictactoe.main.ui.Statistics
+        android:id="@+id/statistics"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_spacing_xxlarge"
+        android:layout_marginStart="@dimen/size_spacing_medium"
+        android:layout_marginEnd="@dimen/size_spacing_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_name_text" />
+
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/top_button"
+        android:id="@+id/reset_statistics"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_spacing_xxlarge"
         android:layout_marginStart="@dimen/size_spacing_xxlarge"
         android:layout_marginEnd="@dimen/size_spacing_xxlarge"
         android:text="@string/reset_statistics"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/statistics"
+        app:layout_constraintStart_toStartOf="@+id/statistics"
+        app:layout_constraintTop_toBottomOf="@+id/statistics" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
