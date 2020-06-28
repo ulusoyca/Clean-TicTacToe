@@ -14,24 +14,24 @@ import org.junit.Test
 class SaveGameStatusUseCaseTest : BaseArchTest() {
 
     private val gameStatusRepository: GameStatusRepository = mock()
-    private val getGameStatusUseCase = GetGameStatusUseCase(gameStatusRepository)
+    private val saveGameStatusUseCase = SaveGameStatusUseCase(gameStatusRepository)
 
     @Test
-    fun `should return game status`() = runBlocking {
+    fun `should save game status`() = runBlocking {
         val gameStatus = InProgress(Moves())
         whenever(gameStatusRepository.saveGameStatus(gameStatus)).thenReturn(Success(Unit))
 
-        val actualGameStatusResource = getGameStatusUseCase()
-        val expectedGameStatusResource = Success(gameStatus)
+        val actual = saveGameStatusUseCase(gameStatus)
+        val expected = Success(Unit)
 
-        Truth.assertThat(expectedGameStatusResource).isEqualTo(actualGameStatusResource)
+        Truth.assertThat(expected).isEqualTo(actual)
     }
 
     @Test
-    fun `should return failure after player move`() = runBlocking {
-        whenever(gameStatusRepository.getGameStatus()).thenReturn(Failure(Reason("Something went wrong")))
+    fun `should return failure on saving game status`() = runBlocking {
+        whenever(gameStatusRepository.saveGameStatus(PlayerWon)).thenReturn(Failure(Reason("Something went wrong")))
 
-        val actualGameStatusResource = getGameStatusUseCase()
+        val actualGameStatusResource = saveGameStatusUseCase(PlayerWon)
         val expectedGameStatusResource = Failure(Reason("Something went wrong"))
 
         Truth.assertThat(expectedGameStatusResource).isEqualTo(actualGameStatusResource)
