@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Card">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/circle_image"
+            android:layout_width="@dimen/size_spacing_large"
+            android:layout_height="@dimen/size_spacing_large"
+            android:layout_marginStart="@dimen/size_spacing_xxxxlarge"
+            android:layout_marginTop="@dimen/size_spacing_large"
+            android:src="@drawable/ic_circle"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/cross_image"
+            android:layout_width="@dimen/size_spacing_large"
+            android:layout_height="@dimen/size_spacing_large"
+            android:src="@drawable/ic_cross"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="@+id/draw"
+            app:layout_constraintStart_toStartOf="@+id/circle_image"
+            tools:layout_editor_absoluteY="24dp" />
+
+        <View
+            android:id="@+id/horizontal_line"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/size_spacing_xsmall"
+            app:layout_constraintTop_toBottomOf="@+id/circle_image"
+            android:layout_marginTop="@dimen/size_spacing_small"
+            android:layout_marginBottom="@dimen/size_spacing_medium"
+            android:layout_marginStart="@dimen/size_spacing_xxlarge"
+            android:layout_marginEnd="@dimen/size_spacing_xxlarge"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/dark_gray"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/draw"
+            style="@style/Body.Small.ColorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_spacing_xxxxlarge"
+            android:text="@string/draw"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/circle_image" />
+
+        <TextView
+            android:id="@+id/win_number"
+            style="@style/Data.XXLarge.Accent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/circle_image"
+            app:layout_constraintStart_toStartOf="@+id/circle_image"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
+            tools:text="4" />
+
+        <View
+            android:id="@+id/vertical_left"
+            android:layout_width="@dimen/size_spacing_xsmall"
+            android:layout_height="0dp"
+            android:background="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/win_number"
+            app:layout_constraintEnd_toStartOf="@+id/lose_number"
+            app:layout_constraintStart_toEndOf="@+id/win_number"
+            app:layout_constraintTop_toTopOf="@+id/circle_image" />
+
+        <TextView
+            android:id="@+id/lose_number"
+            style="@style/Data.XXLarge.Accent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/cross_image"
+            app:layout_constraintStart_toStartOf="@+id/cross_image"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
+            tools:text="0" />
+
+        <TextView
+            android:id="@+id/draw_number"
+            style="@style/Data.XXLarge.Accent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/draw"
+            app:layout_constraintStart_toStartOf="@+id/draw"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
+            tools:text="1" />
+
+        <View
+            android:id="@+id/vertical_right"
+            android:layout_width="@dimen/size_spacing_xsmall"
+            android:layout_height="0dp"
+            android:background="@color/dark_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/vertical_left"
+            app:layout_constraintEnd_toStartOf="@+id/draw"
+            app:layout_constraintStart_toEndOf="@+id/cross_image"
+            app:layout_constraintTop_toTopOf="@+id/circle_image" />
+
+        <TextView
+            android:id="@+id/total_game"
+            style="@style/Body.Small.ColorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_spacing_medium"
+            android:layout_marginBottom="@dimen/size_spacing_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/horizontal_line"
+            app:layout_constraintTop_toBottomOf="@+id/win_number"
+            tools:text="Total game : 0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

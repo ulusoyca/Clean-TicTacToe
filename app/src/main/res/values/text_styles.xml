@@ -10,6 +10,14 @@
         <item name="android:lineSpacingMultiplier">1</item>
     </style>
 
+    <style name="Body.Small.ColorPrimary" parent="Body.Small">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="Body.Small.ColorAccent" parent="Body.Small">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
     <style name="Headline.Medium" parent="TextAppearance.MaterialComponents.Headline5">
         <item name="android:includeFontPadding">false</item>
         <item name="fontFamily">@font/montserrat_alternates_bold</item>
@@ -43,6 +51,15 @@
         <item name="android:fontFamily">@font/montserrat_alternates_bold</item>
         <item name="android:letterSpacing">0.01</item>
         <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:lineSpacingMultiplier">1</item>
+    </style>
+
+    <style name="Data.XXLarge.Accent" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:includeFontPadding">false</item>
+        <item name="fontFamily">@font/montserrat_alternates_bold</item>
+        <item name="android:fontFamily">@font/montserrat_alternates_bold</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:lineSpacingMultiplier">1</item>
     </style>
 

@@ -5,9 +5,11 @@
     <string name="game_statistics">Game Statistics</string>
     <string name="reset_statistics">Reset Statistics</string>
     <string name="you">You</string>
+    <string name="draw">Draw</string>
     <string name="computer">Computer</string>
     <string name="games">Games</string>
     <string name="you_lost">You Lost!</string>
     <string name="play_again">Play again</string>
     <string name="back_home">Back Home</string>
+    <string name="total_game">Total game : %1$d</string>
 </resources>
