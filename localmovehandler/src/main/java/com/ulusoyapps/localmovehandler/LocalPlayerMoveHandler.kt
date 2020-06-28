@@ -13,7 +13,7 @@ private const val FAKE_DELAY_BEFORE_COMPUTER_MOVE = 1000L
  * 2- After player's move, there is one second fake delay and computer makes a move
  * 3- Computer's move is randomly chosen based on available coordinates
  */
-class PlayerMoveLocalDataSource
+class LocalPlayerMoveHandler
 @Inject constructor(
     private val computerMoveHandler: ComputerMoveHandler
 ) : PlayerMoveDataSource {

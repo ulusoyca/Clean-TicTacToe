@@ -16,6 +16,9 @@
 
 package com.ulusoyapps.tictactoe
 
+import com.ulusoyapps.tictactoe.di.CacheModule
+import com.ulusoyapps.tictactoe.di.DatasourceModule
+import com.ulusoyapps.tictactoe.di.LocalMoveHandlerModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
@@ -30,6 +33,9 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AppModule::class,
         ContributeActivityModule::class,
+        CacheModule::class,
+        DatasourceModule::class,
+        LocalMoveHandlerModule::class,
         ViewModelModule::class
     ]
 )

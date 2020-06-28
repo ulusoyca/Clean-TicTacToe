@@ -15,6 +15,7 @@ android {
         targetSdkVersion rootProject.ext.target_sdk_version
         versionCode rootProject.ext.version_code
         versionName rootProject.ext.version_name
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -50,6 +51,9 @@ android {
 dependencies {
 
     implementation project(":domain")
+    implementation project(":datasource")
+    implementation project(":localmovehandler")
+    implementation project(":cache")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 

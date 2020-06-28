@@ -9,10 +9,10 @@ import com.ulusoyapps.tictactoe.unittesting.BaseArchTest
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
-class PlayerMoveLocalDataSourceTest : BaseArchTest() {
+class LocalPlayerMoveHandlerTest : BaseArchTest() {
 
     private val computerMoveHandler: ComputerMoveHandler = mock()
-    private val playerMoveLocalDataSource = PlayerMoveLocalDataSource(computerMoveHandler)
+    private val playerMoveLocalDataSource = LocalPlayerMoveHandler(computerMoveHandler)
 
     @Test
     fun `game should be in progress after player's first move`() = runBlocking {

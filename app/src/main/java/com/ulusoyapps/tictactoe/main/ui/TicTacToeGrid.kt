@@ -10,6 +10,7 @@ import androidx.core.view.setMargins
 import com.ulusoyapps.tictactoe.R
 import com.ulusoyapps.tictactoe.databinding.ViewTicTacToeGridBinding
 import com.ulusoyapps.tictactoe.domain.entitiy.Coordinate
+import timber.log.Timber
 import kotlin.math.roundToInt
 
 private const val GRID_SIZE = 3
@@ -92,11 +93,14 @@ class TicTacToeGrid
                 }
                 id = View.generateViewId()
                 idArray[i][j] = id
-                val button = TicTacToeBox(context).apply {
+                val box = TicTacToeBox(context).apply {
                     this.id = id
                     coordinate = Coordinate(row = i, column = j)
                 }
-                binding.root.addView(button, layoutParams)
+                box.setOnClickListener {
+                    Timber.d("cgtya coordinate: ${(it as TicTacToeBox).coordinate} ")
+                }
+                binding.root.addView(box, layoutParams)
             }
         }
     }
