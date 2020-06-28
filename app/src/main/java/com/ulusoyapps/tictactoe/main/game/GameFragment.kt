@@ -74,18 +74,30 @@ class GameFragment : DaggerFragment() {
         setConstraintsForBoxes()
         configureNavigationButtons()
         binding.animationView.addAnimatorListener(animationListener)
-        onNewGame()
 
         with(viewModel) {
-            statistics.observe(viewLifecycleOwner, Observer { statistics ->
-                binding.scoreboard.updateStatistics(statistics)
+            updateStatistics()
+            getGameStatus()
+            computerMoves.observe(viewLifecycleOwner, Observer { coordinates ->
+                coordinates.forEach {
+                    findTicTacToeBox(it).run {
+                        onComputerMove()
+                        isClickable = false
+                    }
+                }
             })
 
-            computerMove.observe(viewLifecycleOwner, Observer {
-                findTicTacToeBox(it).run {
-                    onComputerMove()
-                    isClickable = false
+            playerMoves.observe(viewLifecycleOwner, Observer { coordinates ->
+                coordinates.forEach {
+                    findTicTacToeBox(it).run {
+                        onPlayerMove()
+                        isClickable = false
+                    }
                 }
+            })
+
+            statistics.observe(viewLifecycleOwner, Observer { statistics ->
+                binding.scoreboard.updateStatistics(statistics)
             })
 
             animationResId.observe(viewLifecycleOwner, Observer { animationResId ->
@@ -121,7 +133,7 @@ class GameFragment : DaggerFragment() {
         allCoordinates.forEach {
             findTicTacToeBox(it).setToInitialState()
         }
-        viewModel.onNewNewGame()
+        viewModel.onNewGame()
     }
 
     private fun findTicTacToeBox(it: Coordinate) =

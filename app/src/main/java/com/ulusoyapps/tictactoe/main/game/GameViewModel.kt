@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ulusoyapps.tictactoe.R
 import com.ulusoyapps.tictactoe.domain.entitiy.*
+import com.ulusoyapps.tictactoe.domain.interactions.GetGameStatusUseCase
 import com.ulusoyapps.tictactoe.domain.interactions.GetStatisticsUseCase
 import com.ulusoyapps.tictactoe.domain.interactions.HandlePlayerMoveUseCase
 import com.ulusoyapps.tictactoe.domain.interactions.SaveGameStatusUseCase
@@ -21,20 +22,41 @@ class GameViewModel
 @Inject constructor(
     private val handlePlayerMoveUseCase: HandlePlayerMoveUseCase,
     private val getStatisticsUseCase: GetStatisticsUseCase,
-    private val saveGameStatusUseCase: SaveGameStatusUseCase
+    private val saveGameStatusUseCase: SaveGameStatusUseCase,
+    private val getGameStatusUseCase: GetGameStatusUseCase
 ) : ViewModel() {
 
     private val _statistics = MutableLiveData<Statistics>()
     val statistics: LiveData<Statistics>
         get() = _statistics
 
-    private val _computerMove = MutableLiveData<Coordinate>()
-    val computerMove: LiveData<Coordinate>
-        get() = _computerMove
+    private val _playerMoves = MutableLiveData<List<Coordinate>>()
+    val playerMoves: LiveData<List<Coordinate>>
+        get() = _playerMoves
+
+    private val _computerMoves = MutableLiveData<List<Coordinate>>()
+    val computerMoves: LiveData<List<Coordinate>>
+        get() = _computerMoves
 
     private val _animationResId = MutableLiveData<Int>()
     val animationResId: LiveData<Int>
         get() = _animationResId
+
+    fun getGameStatus() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val gameStatusResource = getGameStatusUseCase()
+            if (gameStatusResource is Success) {
+                if (gameStatusResource.data is InProgress) {
+                    val moves = (gameStatusResource.data as InProgress).moves
+
+                    _playerMoves.postValue(moves.playerMoves)
+                    _computerMoves.postValue(moves.computerMoves)
+                } else {
+                    onNewGame()
+                }
+            }
+        }
+    }
 
     fun onPlayerMove(coordinate: Coordinate) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -43,7 +65,7 @@ class GameViewModel
                 when (val status = gameStatusResource.data) {
                     is InProgress -> {
                         status.moves.computerMoves.forEach {
-                            _computerMove.postValue(it)
+                            _computerMoves.postValue(listOf(it))
                         }
                     }
                     NotStarted -> {
@@ -69,14 +91,16 @@ class GameViewModel
         }
     }
 
-    private suspend fun updateStatistics() {
-        val statisticsResource = getStatisticsUseCase()
-        if (statisticsResource is Success) {
-            _statistics.postValue(statisticsResource.data)
+    fun updateStatistics() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val statisticsResource = getStatisticsUseCase()
+            if (statisticsResource is Success) {
+                _statistics.postValue(statisticsResource.data)
+            }
         }
     }
 
-    fun onNewNewGame() {
+    fun onNewGame() {
         viewModelScope.launch(Dispatchers.IO) {
             saveGameStatusUseCase(NotStarted)
             updateStatistics()
