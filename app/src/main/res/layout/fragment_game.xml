@@ -22,7 +22,8 @@
         app:layout_constraintStart_toStartOf="@+id/app_name_text"
         app:layout_constraintTop_toBottomOf="@+id/app_name_text"
         android:visibility="gone"
-        android:text="@string/you_lost" />
+        tools:visibility="visible"
+        tools:text="@string/you_lost" />
 
     <com.ulusoyapps.tictactoe.main.ui.AppNameTextView
         android:id="@+id/app_name_text"

@@ -10,6 +10,8 @@
     <string name="computer">Computer</string>
     <string name="games">Games</string>
     <string name="you_lost">You Lost!</string>
+    <string name="you_won">You Won!</string>
+    <string name="you_draw">It\'s a Draw!</string>
     <string name="play_again">Play again</string>
     <string name="back_home">Back Home</string>
     <string name="total_game">Total game : %1$d</string>

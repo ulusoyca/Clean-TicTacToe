@@ -42,13 +42,16 @@ class GameViewModel
     val animationResId: LiveData<Int>
         get() = _animationResId
 
+    private val _resultTextResId = MutableLiveData<Int>()
+    val resultTextResId: LiveData<Int>
+        get() = _resultTextResId
+
     fun getGameStatus() {
         viewModelScope.launch(Dispatchers.IO) {
             val gameStatusResource = getGameStatusUseCase()
             if (gameStatusResource is Success) {
                 if (gameStatusResource.data is InProgress) {
                     val moves = (gameStatusResource.data as InProgress).moves
-
                     _playerMoves.postValue(moves.playerMoves)
                     _computerMoves.postValue(moves.computerMoves)
                 } else {
@@ -74,16 +77,22 @@ class GameViewModel
                         throw IllegalArgumentException(errorMessage)
                     }
                     PlayerWon -> {
+                        saveGameStatusUseCase(NotStarted)
                         updateStatistics()
+                        _resultTextResId.postValue(R.string.you_won)
                         _animationResId.postValue(R.raw.trophy)
                     }
                     PlayerLost -> {
+                        saveGameStatusUseCase(NotStarted)
                         updateStatistics()
+                        _resultTextResId.postValue(R.string.you_lost)
                         _animationResId.postValue(R.raw.sad_emoji)
                         updateStatistics()
                     }
                     Draw -> {
+                        saveGameStatusUseCase(NotStarted)
                         updateStatistics()
+                        _resultTextResId.postValue(R.string.you_draw)
                         _animationResId.postValue(R.raw.hand_shake)
                     }
                 }

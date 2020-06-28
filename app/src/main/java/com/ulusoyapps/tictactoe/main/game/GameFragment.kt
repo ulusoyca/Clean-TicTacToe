@@ -78,6 +78,14 @@ class GameFragment : DaggerFragment() {
         with(viewModel) {
             updateStatistics()
             getGameStatus()
+
+            resultTextResId.observe(viewLifecycleOwner, Observer {
+                binding.resultText.run {
+                    visibility = View.VISIBLE
+                    text = getString(it)
+                }
+            })
+
             computerMoves.observe(viewLifecycleOwner, Observer { coordinates ->
                 coordinates.forEach {
                     findTicTacToeBox(it).run {
