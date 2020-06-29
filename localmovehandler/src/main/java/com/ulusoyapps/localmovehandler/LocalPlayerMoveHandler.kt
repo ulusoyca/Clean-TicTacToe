@@ -37,8 +37,8 @@ class LocalPlayerMoveHandler
         val computerMoves = moves.computerMoves
 
         // Check if the player's new move, resulted player win
-        if (isWin(playerMoves)) {
-            return Success(PlayerWon)
+        getWinningCombinationOrNull(playerMoves)?.let { winningCombination ->
+            return Success(PlayerWon(winningCombination))
         }
 
         if (isDraw(playerMoves, computerMoves)) {
@@ -48,8 +48,9 @@ class LocalPlayerMoveHandler
         delay(FAKE_DELAY_BEFORE_COMPUTER_MOVE)
         val newComputerMove = computerMoveHandler.makeComputerMove(moves)
         val updatedComputerMoves = moves.computerMoves + newComputerMove
-        if (isWin(updatedComputerMoves)) {
-            return Success(PlayerLost)
+
+        getWinningCombinationOrNull(updatedComputerMoves)?.let { winningCombination ->
+            return Success(PlayerLost(winningCombination))
         }
 
         if (isDraw(playerMoves, computerMoves)) {
@@ -67,7 +68,12 @@ class LocalPlayerMoveHandler
         computerMoves: List<Coordinate>
     ) = playerMoves.size + computerMoves.size == 9
 
-    private fun isWin(moves: List<Coordinate>): Boolean {
-        return winningCombinations.any { winningCombination -> moves.containsAll(winningCombination) }
+    private fun getWinningCombinationOrNull(moves: List<Coordinate>): List<Coordinate>? {
+        winningCombinations.forEach { winningCombination ->
+            if (moves.containsAll(winningCombination)) {
+                return winningCombination
+            }
+        }
+        return null
     }
 }

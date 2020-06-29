@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.navigation_buttons.*
 import timber.log.Timber
 
 private const val GRID_SIZE = 3
+private const val BLINK_ANIM_DURATION = 500L
 
 class GameFragment : DaggerFragment() {
 
@@ -106,6 +107,14 @@ class GameFragment : DaggerFragment() {
 
             statistics.observe(viewLifecycleOwner, Observer { statistics ->
                 binding.scoreboard.updateStatistics(statistics)
+            })
+
+            winningCombination.observe(viewLifecycleOwner, Observer { coordinates ->
+                coordinates.forEach { coordinate ->
+                    findTicTacToeBox(coordinate).let {
+                        it.blink(BLINK_ANIM_DURATION)
+                    }
+                }
             })
 
             animationResId.observe(viewLifecycleOwner, Observer { animationResId ->

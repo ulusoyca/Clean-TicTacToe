@@ -6,8 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ulusoyapps.tictactoe.domain.entitiy.*
 import com.ulusoyapps.tictactoe.domain.interactions.GetGameStatusUseCase
-import com.ulusoyapps.tictactoe.domain.interactions.GetStatisticsUseCase
-import com.ulusoyapps.tictactoe.domain.interactions.ResetStatisticsUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi

@@ -14,8 +14,12 @@ import java.lang.IllegalArgumentException
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
+
+private const val GAME_END_DELAY = 2000L
+private const val GAME_DRAW_DELAY = 500L
 
 @OptIn(InternalCoroutinesApi::class)
 class GameViewModel
@@ -45,6 +49,10 @@ class GameViewModel
     private val _resultTextResId = MutableLiveData<Int>()
     val resultTextResId: LiveData<Int>
         get() = _resultTextResId
+
+    private val _winningCombination = MutableLiveData<List<Coordinate>>()
+    val winningCombination: LiveData<List<Coordinate>>
+        get() = _winningCombination
 
     fun getGameStatus() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -76,13 +84,17 @@ class GameViewModel
                         Timber.e(errorMessage)
                         throw IllegalArgumentException(errorMessage)
                     }
-                    PlayerWon -> {
+                    is PlayerWon -> {
+                        _winningCombination.postValue(status.winningCoordinates)
+                        delay(GAME_END_DELAY)
                         saveGameStatusUseCase(NotStarted)
                         updateStatistics()
                         _resultTextResId.postValue(R.string.you_won)
                         _animationResId.postValue(R.raw.trophy)
                     }
-                    PlayerLost -> {
+                    is PlayerLost -> {
+                        _winningCombination.postValue(status.winningCoordinates)
+                        delay(GAME_END_DELAY)
                         saveGameStatusUseCase(NotStarted)
                         updateStatistics()
                         _resultTextResId.postValue(R.string.you_lost)
@@ -90,6 +102,7 @@ class GameViewModel
                         updateStatistics()
                     }
                     Draw -> {
+                        delay(GAME_DRAW_DELAY)
                         saveGameStatusUseCase(NotStarted)
                         updateStatistics()
                         _resultTextResId.postValue(R.string.you_draw)

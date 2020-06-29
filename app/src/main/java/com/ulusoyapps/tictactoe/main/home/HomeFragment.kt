@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.ulusoyapps.tictactoe.R
 import com.ulusoyapps.tictactoe.databinding.FragmentHomeBinding
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.navigation_buttons.*
 import javax.inject.Inject
+import kotlinx.android.synthetic.main.navigation_buttons.*
 
 class HomeFragment : DaggerFragment() {
 

@@ -3,6 +3,9 @@ package com.ulusoyapps.tictactoe.main.ui
 import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.ulusoyapps.tictactoe.R
@@ -33,5 +36,15 @@ class TicTacToeBox
     fun setToInitialState() {
         isClickable = true
         backgroundTintList = ContextCompat.getColorStateList(context, R.color.white)
+    }
+
+    fun blink(animDuration: Long) {
+        val animation = AlphaAnimation(1f, 0f).apply {
+            duration = animDuration // duration - half a second
+            interpolator = LinearInterpolator() // do not alter animation rate
+            repeatCount = 4
+            repeatMode = Animation.REVERSE
+        }
+        startAnimation(animation)
     }
 }
