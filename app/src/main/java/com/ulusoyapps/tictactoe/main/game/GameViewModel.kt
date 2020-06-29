@@ -54,6 +54,10 @@ class GameViewModel
     val winningCombination: LiveData<List<Coordinate>>
         get() = _winningCombination
 
+    private val _isComputerThinking = MutableLiveData<Boolean>()
+    val isComputerThinking: LiveData<Boolean>
+        get() = _isComputerThinking
+
     fun getGameStatus() {
         viewModelScope.launch(Dispatchers.IO) {
             val gameStatusResource = getGameStatusUseCase()
@@ -70,6 +74,7 @@ class GameViewModel
     }
 
     fun onPlayerMove(coordinate: Coordinate) {
+        _isComputerThinking.value = true
         viewModelScope.launch(Dispatchers.IO) {
             val gameStatusResource = handlePlayerMoveUseCase(coordinate)
             if (gameStatusResource is Success) {
@@ -94,6 +99,7 @@ class GameViewModel
                     }
                     is PlayerLost -> {
                         _winningCombination.postValue(status.winningCoordinates)
+                        _computerMoves.postValue(status.winningCoordinates)
                         delay(GAME_END_DELAY)
                         saveGameStatusUseCase(NotStarted)
                         updateStatistics()
@@ -110,6 +116,7 @@ class GameViewModel
                     }
                 }
             }
+            _isComputerThinking.postValue(false)
         }
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.setMargins
@@ -35,6 +36,8 @@ class GameFragment : DaggerFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel: GameViewModel by viewModels { viewModelFactory }
+
+    private var isComputerThinking = false
 
     private val idArray: Array<IntArray> = arrayOf(
         intArrayOf(0, 0, 0),
@@ -79,6 +82,10 @@ class GameFragment : DaggerFragment() {
         with(viewModel) {
             updateStatistics()
             getGameStatus()
+
+            isComputerThinking.observe(viewLifecycleOwner, Observer {
+                this@GameFragment.isComputerThinking = it
+            })
 
             resultTextResId.observe(viewLifecycleOwner, Observer {
                 binding.resultText.run {
@@ -147,6 +154,7 @@ class GameFragment : DaggerFragment() {
         gridFrame.visibility = View.VISIBLE
         scoreboard.visibility = View.VISIBLE
         button_group.visibility = View.GONE
+        binding.resultText.visibility = View.GONE
         allCoordinates.forEach {
             findTicTacToeBox(it).setToInitialState()
         }
@@ -157,12 +165,16 @@ class GameFragment : DaggerFragment() {
         binding.root.findViewById<TicTacToeBox>(idArray[it.row][it.column])
 
     private val ticTacToeBoxClickListener = View.OnClickListener {
-        val ticTacToeBox = it as TicTacToeBox
-        val coordinate = ticTacToeBox.coordinate
-        ticTacToeBox.onPlayerMove()
-        ticTacToeBox.isClickable = false
-        Timber.d("Tic Tac Toe box clicked: $coordinate ")
-        viewModel.onPlayerMove(coordinate)
+        if (isComputerThinking) {
+            Toast.makeText(context, getString(R.string.computer_is_thinking), Toast.LENGTH_LONG).show()
+        } else {
+            val ticTacToeBox = it as TicTacToeBox
+            val coordinate = ticTacToeBox.coordinate
+            ticTacToeBox.onPlayerMove()
+            ticTacToeBox.isClickable = false
+            Timber.d("Tic Tac Toe box clicked: $coordinate ")
+            viewModel.onPlayerMove(coordinate)
+        }
     }
 
     private fun setConstraintsForBoxes() {

@@ -15,4 +15,5 @@
     <string name="play_again">Play again</string>
     <string name="back_home">Back Home</string>
     <string name="total_game">Total game : %1$d</string>
+    <string name="computer_is_thinking">Wait! It is computer\'s turn.</string>
 </resources>

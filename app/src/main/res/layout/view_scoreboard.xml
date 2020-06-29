@@ -62,11 +62,10 @@
         style="@style/Data.XLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_spacing_medium"
-        tools:text="0"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/number_of_wins"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        tools:text="0" />
 
     <TextView
         android:id="@+id/number_of_wins"
@@ -86,13 +85,11 @@
         style="@style/Data.XLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size_spacing_medium"
-        android:layout_marginBottom="@dimen/size_spacing_medium"
-        tools:text="0"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/number_of_wins"
         app:layout_constraintEnd_toEndOf="@+id/cross_image"
         app:layout_constraintStart_toStartOf="@+id/cross_image"
-        app:layout_constraintTop_toBottomOf="@+id/you_text" />
+        app:layout_constraintTop_toTopOf="@+id/number_of_wins"
+        tools:text="0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
