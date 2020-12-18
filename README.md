@@ -10,19 +10,19 @@
 
 The target is to create a simple version of the world-famous game Tic Tac. The game is local only, meaning no network connectivity is needed.
 
-![walk-through](app/src/main/res/mipmap-xhdpi/walk-through.png)
+![walk-through](screenshots/tic_tac_toe_walk_through.gif)
 
 If the user closes the app during the game, user can resume the game the next time she launches the app.
 
-![play_from_previous_state](app/src/main/res/mipmap-xhdpi/play_from_previous_state.png)
+![play_from_previous_state](screenshots/play_from_previous_state.gif)
 
 The game result can be win/lost/draw.
 
-![draw_case](app/src/main/res/mipmap-xhdpi/draw_case.png)
+![draw_case](screenshots/draw_case.gif)
 
 This app could have been done in a shorter time, but in this codebase you can see an architecture which enables testable, easy to maintain, and extendable code. Each module in this architecture has its own concern. Separating the concerns with dependency injection enables writing unit tests easily. In this project domain, datasource, and local move handler modules are covered with unit tests. Since this project was implemented in such a shot time, I had to compromise from writing unit tests for the cache module and ui tests due to lack of time. Also cache module should use [Jetpack DataStore](https://medium.com/@jurajkunier/migrating-sharedpreferences-to-jetpack-datastore-9deb8259063) to save the data locally instead of saving JSONs to shared preferences.
 
-![image](app/src/main/res/mipmap-xhdpi/image.png)
+![image](screenshots/architecture.png)
 
 **App Module:**
 The UI and the presenter code lives here. I used MVVM pattern because it works perfectly with Android Jetpack libraries. User interacts with the UI and the view model invokes the interactors (Use Cases) in the domain module.
